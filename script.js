@@ -42,26 +42,6 @@ let init = () => {
 
 }
 
-
-//Button functions to add and remove a list item
-//Add new item
-let addItem = () => {
-        var ol = document.getElementById("dynamic-list");
-
-        var newItem = document.getElementById("newItem");
-        var li = document.createElement("li");
-        li.setAttribute("id", newItem.value);
-        li.appendChild(document.createTextNode(newItem.value));
-        ol.appendChild(li);
-        init();
-    }
-    //Remove the item
-let removeItem = () => {
-    let ol = document.getElementById("dynamic-list");
-    ol.removeChild(ol.lastChild);
-}
-
-
 //Function to open PopUp
 function openModal(modal) {
     if (modal == null) return
@@ -81,6 +61,25 @@ overlay.addEventListener('click', () => {
         closeModal(modal)
     })
 })
+
+
+//Button functions to add and remove a list item
+//Add new item
+let addItem = () => {
+        var ol = document.getElementById("dynamic-list");
+
+        var newItem = document.getElementById("newItem");
+        var li = document.createElement("li");
+        li.setAttribute("id", newItem.value);
+        li.appendChild(document.createTextNode(newItem.value));
+        ol.appendChild(li);
+        init();
+    }
+    //Remove the item
+let removeItem = () => {
+    let ol = document.getElementById("dynamic-list");
+    ol.removeChild(ol.lastChild);
+}
 
 //Initializing the code
 init();

@@ -5,7 +5,6 @@ h1 {
 .list-view {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
