@@ -2,33 +2,6 @@ let init = () => {
     const listItems = document.getElementsByTagName("li");
     const overlay = document.getElementById('overlay')
 
-
-    //Callback function to slide right when mouseover 
-    function callback1(item, itemUp, itemDown) {
-        return function() {
-            item.style.marginLeft = "40px";
-            if (typeof(itemUp) != "undefined") {
-                itemUp.style.marginLeft = "20px";
-            }
-            if (typeof(itemDown) != "undefined") {
-                itemDown.style.marginLeft = "20px";
-            }
-        }
-    }
-
-    //Callback function to return to previous state
-    function callback2(item, itemUp, itemDown) {
-        return function() {
-            item.style.marginLeft = "0px";
-            if (typeof(itemUp) != "undefined") {
-                itemUp.style.marginLeft = "0px";
-            }
-            if (typeof(itemDown) != "undefined") {
-                itemDown.style.marginLeft = "0px";
-            }
-        }
-    }
-
     //Eventlisteners to list items 
     for (let i = 0; i < listItems.length; i++) {
         listItems[i].addEventListener("mouseover", callback1(listItems[i], listItems[i - 1], listItems[i + 1]));
@@ -42,6 +15,31 @@ let init = () => {
 
 }
 
+//Callback function to slide right when mouseover 
+function callback1(item, itemUp, itemDown) {
+    return function() {
+        item.style.marginLeft = "40px";
+        if (typeof(itemUp) != "undefined") {
+            itemUp.style.marginLeft = "20px";
+        }
+        if (typeof(itemDown) != "undefined") {
+            itemDown.style.marginLeft = "20px";
+        }
+    }
+}
+
+//Callback function to return to previous state
+function callback2(item, itemUp, itemDown) {
+    return function() {
+        item.style.marginLeft = "0px";
+        if (typeof(itemUp) != "undefined") {
+            itemUp.style.marginLeft = "0px";
+        }
+        if (typeof(itemDown) != "undefined") {
+            itemDown.style.marginLeft = "0px";
+        }
+    }
+}
 //Function to open PopUp
 function openModal(modal) {
     if (modal == null) return
@@ -66,16 +64,29 @@ overlay.addEventListener('click', () => {
 //Button functions to add and remove a list item
 //Add new item
 let addItem = () => {
-        var ol = document.getElementById("dynamic-list");
+    var ol = document.getElementById("dynamic-list");
+    var newItem1 = document.getElementById("newItem");
+    var li = document.createElement("li");
+    li.setAttribute("id", newItem1.value);
+    li.appendChild(document.createTextNode(newItem1.value));
+    ol.appendChild(li);
 
-        var newItem = document.getElementById("newItem");
-        var li = document.createElement("li");
-        li.setAttribute("id", newItem.value);
-        li.appendChild(document.createTextNode(newItem.value));
-        ol.appendChild(li);
-        init();
-    }
-    //Remove the item
+    let arrayOl = [document.getElementsByTagName("li")];
+
+    let newItem = arrayOl[0][arrayOl[0].length - 1];
+    let newItemUp = arrayOl[0][arrayOl[0].length - 2];
+    let newItemDown = arrayOl[0][arrayOl[0].length];
+
+    newItem.addEventListener("mouseover", callback1(newItem, newItemUp, newItemDown));
+    newItem.addEventListener("mouseout", callback2(newItem, newItemUp, newItemDown));
+    newItem.addEventListener("click", () => {
+        newItem.setAttribute("class", "modal");
+        newItem.innerHTML = newItem.innerText;
+        openModal(newItem)
+    });
+}
+
+//Remove the item
 let removeItem = () => {
     let ol = document.getElementById("dynamic-list");
     ol.removeChild(ol.lastChild);
