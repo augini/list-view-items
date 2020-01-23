@@ -5,6 +5,7 @@ h1 {
 .list-view {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
@@ -23,7 +24,7 @@ h1 {
 
 #newItem {
     width: 300px;
-    display: inline-block;
+    display: flex;
     border: 1px solid #000;
     padding: 20px;
 }
