@@ -23,7 +23,7 @@ h1 {
 }
 
 #newItem {
-    width: 19%;
+    width: 300px;
     display: inline-block;
     border: 1px solid #000;
     padding: 20px;
