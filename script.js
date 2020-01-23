@@ -72,7 +72,6 @@ let addItem = () => {
     ol.appendChild(li);
 
     let arrayOl = [document.getElementsByTagName("li")];
-
     let newItem = arrayOl[0][arrayOl[0].length - 1];
     let newItemUp = arrayOl[0][arrayOl[0].length - 2];
     let newItemDown = arrayOl[0][arrayOl[0].length];
